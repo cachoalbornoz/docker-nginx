@@ -38,7 +38,7 @@ services:
     ports:
       - 9000:9000
     volumes:
-      - ./html:/var/www/html
+      - ./www/chancalay:/usr/share/nginx/html
       - ./php/php.ini:/usr/local/etc/php/php.ini
       - ./logs:/var/log/nginx
     networks:
