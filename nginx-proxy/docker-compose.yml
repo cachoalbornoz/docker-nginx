@@ -1,0 +1,49 @@
+version: "3.1"
+
+services:
+
+  nginx-proxy:
+    image: jwilder/nginx-proxy
+    container_name: nginx-proxy
+    restart: always
+    ports:
+      - "80:80"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro    
+    networks:
+      - parana-medio
+
+  scada1:
+    image: nginx:1.17
+    container_name: nginx-scada1
+    restart: always
+    environment:
+      - VIRTUAL_HOST=scada1.local.com
+    expose:
+      - "80"
+    volumes:
+      - ./www/scada1:/usr/share/nginx/html
+      - ./logs:/var/log/nginx
+    networks:
+      - parana-medio  
+    depends_on:
+      - php
+
+  php:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    container_name: php74
+    ports:
+      - 9000:9000
+    volumes:
+      - ./html:/var/www/html
+      - ./php/php.ini:/usr/local/etc/php/php.ini
+      - ./logs:/var/log/nginx
+    networks:
+      - parana-medio
+
+networks:
+  parana-medio:
+    external: true
