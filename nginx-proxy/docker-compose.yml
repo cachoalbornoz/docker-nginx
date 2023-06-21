@@ -11,21 +11,21 @@ services:
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock:ro    
     networks:
-      - parana-medio
+      - chancalay-network
 
-  scada1:
+  chancalay:
     image: nginx:1.17
-    container_name: nginx-scada1
+    container_name: nginx-chancalay
     restart: always
     environment:
-      - VIRTUAL_HOST=scada1.local.com
+      - VIRTUAL_HOST=chancalay.com
     expose:
       - "80"
     volumes:
-      - ./www/scada1:/usr/share/nginx/html
+      - ./www/chancalay:/usr/share/nginx/html
       - ./logs:/var/log/nginx
     networks:
-      - parana-medio  
+      - chancalay-network  
     depends_on:
       - php
 
@@ -42,8 +42,8 @@ services:
       - ./php/php.ini:/usr/local/etc/php/php.ini
       - ./logs:/var/log/nginx
     networks:
-      - parana-medio
+      - chancalay-network
 
 networks:
-  parana-medio:
+  chancalay-network:
     external: true

@@ -1,7 +1,0 @@
-172.18.0.1 - - [17/May/2023:16:12:40 -0300] "GET / HTTP/1.1" 200 99359 "-" "Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0"
-172.18.0.1 - - [17/May/2023:16:12:44 -0300] "GET /favicon.ico HTTP/1.1" 200 99312 "http://scada2.local/" "Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0"
-172.18.0.1 - - [17/May/2023:16:15:50 -0300] "GET / HTTP/1.1" 200 99594 "-" "Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0"
-172.18.0.1 - - [17/May/2023:16:38:27 -0300] "GET / HTTP/1.1" 200 99337 "-" "Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0"
-192.168.181.1 - - [17/May/2023:16:41:11 -0300] "GET / HTTP/1.1" 200 99372 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/113.0"
-192.168.181.1 - - [17/May/2023:16:41:11 -0300] "GET /favicon.ico HTTP/1.1" 200 99325 "http://scada2.local/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/113.0"
-192.168.181.1 - - [17/May/2023:16:41:22 -0300] "GET / HTTP/1.1" 200 99372 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/113.0"
