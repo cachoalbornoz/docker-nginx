@@ -18,7 +18,7 @@ services:
     container_name: nginx-chancalay
     restart: always
     environment:
-      - VIRTUAL_HOST=chancalay.com
+      - VIRTUAL_HOST=chancalay.com,www.chancalay.com
     expose:
       - "80"
     volumes:

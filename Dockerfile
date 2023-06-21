@@ -56,4 +56,4 @@ RUN apk add \
         shadow \
     && usermod -u 1000 www-data \
     && groupmod -g 1000 www-data \
-    && apk del .shadow-deps \
+    && apk del .shadow-deps 
