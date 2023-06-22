@@ -3,49 +3,50 @@ version: '3'
 services:
 
   nginx-proxy:
-    image: nginx
     container_name: nginx-proxy
-    ports:
-      - "80:80"
-      - "443:443"
-    volumes:
-      - conf:/etc/nginx/conf.d
-      - vhost:/etc/nginx/vhost.d
-      - html:/usr/share/nginx/html
-      - certs:/etc/nginx/certs:ro
-    labels:
-      - "com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy"
+    image: jwilder/nginx-proxy # Es un nginx que permite redireccionar el tráfico hacia otros contenedores
     restart: always
-
-  docker-gen:
-    image: jwilder/docker-gen
-    command: -notify-sighup nginx-proxy -watch /etc/docker-gen/templates/nginx.tmpl /etc/nginx/conf.d/default.conf
-    container_name: nginx-proxy-gen
-    depends_on:
-      - nginx-proxy
+    ports: # Configura puertos de escucha hacia adentro y hacia afuera
+      - '80:80' # HTTP
+      - '443:443' # HTTPS (SSL)
     volumes:
-      - conf:/etc/nginx/conf.d
-      - vhost:/etc/nginx/vhost.d
-      - certs:/etc/nginx/certs:ro
-      - ./nginx.tmpl:/etc/docker-gen/templates/nginx.tmpl:ro
-      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - /var/run/docker.sock:/tmp/docker.sock:ro # Monta el socket de Docker para mantener actualizada la configuración de los vhosts de los contenedores que se ejecutan o detienen.
+      - ./nginx/acme:/etc/acme.sh # Directorio para almacenar los archivos y configuraciones de acme.sh
+      - ./nginx/certs:/etc/nginx/certs:ro # Directorio para almacenar los certificados SSL/TLS
+      - ./nginx/html:/usr/share/nginx/html # Directorio para que LetsEncrypt pueda escribir los archivos de validación
+      - ./nginx/vhostd:/etc/nginx/vhost.d # Directorio para que LetsEncrypt pueda escribir en los vhosts
     labels:
-      - "com.github.jrcs.letsencrypt_nginx_proxy_companion.docker_gen"
-    restart: always
+      - com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy # Requerido según la documentación
 
   letsencrypt:
-    image: jrcs/letsencrypt-nginx-proxy-companion
-    container_name: nginx-proxy-le
+    container_name: letsencrypt
+    image: jrcs/letsencrypt-nginx-proxy-companion # es como un compañero para el nginx-proxy. Se encarga de generar y administrar los certificados SSL mediante Let's Encrypt para los dominios configurados en los otros servicios.
+    restart: always
+    environment:
+      - NGINX_PROXY_CONTAINER=nginx-proxy
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro # Monta el socket de Docker para permitir la comunicación con el contenedor nginx-proxy
+      - ./nginx/acme:/etc/acme.sh # Monta el directorio para los archivos y configuraciones de acme.sh
+      - ./nginx/certs:/etc/nginx/certs:rw # Monta el directorio para los certificados SSL/TLS
+      - ./nginx/html:/usr/share/nginx/html # Monta el directorio para que LetsEncrypt pueda escribir los archivos de validación
+      - ./nginx/vhostd:/etc/nginx/vhost.d # Monta el directorio para que LetsEncrypt pueda escribir en los vhosts
+
+  www:
+    container_name: www
+    image: nginx
+    restart: always
+    expose:
+      - '80' # Expone el puerto en forma interna solo para la red de Docker ('expose' en vez de 'ports')
+    volumes:
+      - ./www/chancalay:/usr/share/nginx/html:ro # Monta el directorio con los archivos del sitio web en el contenedor nginx
+    environment:
+      - VIRTUAL_HOST=chancalay.com/ # Los vhosts (separados por coma)
+      - LETSENCRYPT_HOST=chancalay.com/ # Los dominios a certificar (separados por coma)
+      - LETSENCRYPT_EMAIL=cachoalbornoz@gmail.com # Email para validación / notificaciones
     depends_on:
       - nginx-proxy
-      - docker-gen
-    volumes:
-      - vhost:/etc/nginx/vhost.d
-      - html:/usr/share/nginx/html
-      - certs:/etc/nginx/certs
-      - acme:/etc/acme.sh
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-    restart: always
+      - letsencrypt
+      - php
 
   php:
     build:
@@ -56,19 +57,12 @@ services:
     ports:
       - 9000:9000
     volumes:
-      - ./www:/usr/share/nginx/html
+      - ./www/chancalay:/usr/share/nginx/html
       - ./php/php.ini:/usr/local/etc/php/php.ini
       - ./logs:/var/log/nginx
     networks:
       - nginx-proxy
 
-
-volumes:
-  conf:
-  vhost:
-  html:
-  certs:
-  acme:
   
 networks:
   nginx-proxy:
