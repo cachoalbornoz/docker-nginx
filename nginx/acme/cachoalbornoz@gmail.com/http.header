@@ -1,0 +1,14 @@
+HTTP/2 201 
+server: nginx
+date: Thu, 22 Jun 2023 12:12:41 GMT
+content-type: application/json
+content-length: 568
+boulder-requester: 1169117657
+cache-control: public, max-age=0, no-cache
+link: <https://acme-v02.api.letsencrypt.org/directory>;rel="index"
+link: <https://letsencrypt.org/documents/LE-SA-v1.3-September-21-2022.pdf>;rel="terms-of-service"
+location: https://acme-v02.api.letsencrypt.org/acme/acct/1169117657
+replay-nonce: 1AADHhXskxAyOLhqPfaTLzW_gGie2VczR1DdEP4V7rsxywA
+x-frame-options: DENY
+strict-transport-security: max-age=604800
+

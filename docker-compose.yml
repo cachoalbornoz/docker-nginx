@@ -33,16 +33,20 @@ services:
 
   www:
     container_name: www
-    image: nginx
+    image: nginx:1.17
     restart: always
     expose:
       - '80' # Expone el puerto en forma interna solo para la red de Docker ('expose' en vez de 'ports')
     volumes:
-      - ./www/chancalay:/usr/share/nginx/html:ro # Monta el directorio con los archivos del sitio web en el contenedor nginx
+      - ./conf/site.conf:/etc/nginx/conf.d/site.conf
+      - ./www/chancalay:/usr/share/nginx/html # Monta el directorio con los archivos del sitio web en el contenedor nginx
+      - ./logs:/var/log/nginx
     environment:
-      - VIRTUAL_HOST=chancalay.com/ # Los vhosts (separados por coma)
-      - LETSENCRYPT_HOST=chancalay.com/ # Los dominios a certificar (separados por coma)
+      - VIRTUAL_HOST=local.chancalay.com/ # Los vhosts (separados por coma)
+      - LETSENCRYPT_HOST=local.chancalay.com/ # Los dominios a certificar (separados por coma)
       - LETSENCRYPT_EMAIL=cachoalbornoz@gmail.com # Email para validación / notificaciones
+    networks:
+      - nginx-proxy   
     depends_on:
       - nginx-proxy
       - letsencrypt
@@ -53,11 +57,11 @@ services:
       context: .
       dockerfile: Dockerfile
     restart: always
-    container_name: php74
+    container_name: php
     ports:
       - 9000:9000
     volumes:
-      - ./www/chancalay:/usr/share/nginx/html
+      - ./www:/usr/share/nginx/html
       - ./php/php.ini:/usr/local/etc/php/php.ini
       - ./logs:/var/log/nginx
     networks:
@@ -66,4 +70,4 @@ services:
   
 networks:
   nginx-proxy:
-    external: true
+    external: true    
