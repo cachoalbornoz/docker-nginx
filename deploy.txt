@@ -1,0 +1,10 @@
+composer install / composer update
+chown -R www-data:www-data /var/www/sgis/public /var/www/sgis/storage /var/www/sgis/bootstrap/cache
+chmod -R 775 /var/www/sgis/public /var/www/sgis/storage /var/www/sgis/bootstrap/cache
+php artisan storage:link
+# ln -s /var/www/sgis/public /var/www/html
+# php artisan migrate:fresh --seed
+php artisan optimize:clear
+php artisan optimize
+php artisan config:cache
+php artisan key:generate
