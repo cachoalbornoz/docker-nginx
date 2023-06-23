@@ -1,0 +1,5 @@
+172.20.0.5 - - [23/Jun/2023:08:20:16 -0300] "GET / HTTP/1.1" 200 23113 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36 Edg/114.0.1823.51"
+172.20.0.5 - - [23/Jun/2023:08:20:17 -0300] "GET /favicon.ico HTTP/1.1" 404 467 "http://sgis.testing.fluxa.com.ar/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36 Edg/114.0.1823.51"
+172.20.0.5 - - [23/Jun/2023:08:32:23 -0300] "GET / HTTP/1.1" 200 23176 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36 Edg/114.0.1823.51"
+172.20.0.5 - - [23/Jun/2023:08:32:26 -0300] "GET / HTTP/1.1" 200 23176 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36 Edg/114.0.1823.51"
+172.20.0.5 - - [23/Jun/2023:08:36:03 -0300] "GET / HTTP/1.1" 200 23173 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36 Edg/114.0.1823.51"

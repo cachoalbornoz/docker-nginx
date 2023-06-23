@@ -45,7 +45,7 @@ services:
         environment:
             - VIRTUAL_HOST=sgis.testing.fluxa.com.ar # Los vhosts a reportar a nginx-proxy (separados por coma)
             - LETSENCRYPT_HOST=sgis.testing.fluxa.com.ar # Los dominios a certificar (separados por coma)
-            - LETSENCRYPT_EMAIL=jose@chiardola.com # Email para validación / notificaciones
+            - LETSENCRYPT_EMAIL=cachoalbornoz@gmail.com # Email para validación / notificaciones
             - TZ=America/Argentina/Buenos_Aires
         depends_on:
             - nginx-proxy
@@ -62,7 +62,7 @@ services:
         environment:
             - VIRTUAL_HOST=er.fluxsasistemas.host # Los vhosts a reportar a nginx-proxy (separados por coma)
             - LETSENCRYPT_HOST=er.fluxsasistemas.host # Los dominios a certificar (separados por coma)
-            - LETSENCRYPT_EMAIL=jose@chiardola.com # Email para validación / notificaciones
+            - LETSENCRYPT_EMAIL=cachoalbornoz@gmail.com # Email para validación / notificaciones
         depends_on:
             - nginx-proxy
             - letsencrypt

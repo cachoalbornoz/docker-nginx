@@ -1,0 +1,5 @@
+/mariadb/data
+/nginx/acme/*.*
+/nginx/certs/*.*
+/nginx/html/*.*
+/nginx/vhostd/*.*
