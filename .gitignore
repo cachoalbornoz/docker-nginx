@@ -3,3 +3,4 @@
 /nginx/certs/*.*
 /nginx/html/*.*
 /nginx/vhostd/*.*
+apache/log/*.log

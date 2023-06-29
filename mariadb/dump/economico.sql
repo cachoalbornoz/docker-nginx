@@ -7,6 +7,14 @@
 -- Versión del servidor: 10.3.17-MariaDB
 -- Versión de PHP: 7.2.11
 
+
+CREATE DATABASE IF NOT EXISTS economico;
+
+CREATE USER IF NOT EXISTS economico_admin@'%' IDENTIFIED BY 'E76JHv7xzCVfZO6VkQ';
+GRANT ALL PRIVILEGES  ON economico.* TO economico_admin@'%' WITH GRANT OPTION;
+
+USE economico;
+
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
 START TRANSACTION;

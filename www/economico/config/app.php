@@ -10,9 +10,9 @@ return [
 
     'debug' => env('APP_DEBUG', false),
 
-    'url' => env('APP_URL', 'https://www.entrerios.gov.ar/economicoemprendedor'),
+    'url' => env('APP_URL', 'http://economico.com.ar/'),
 
-    'asset_url' => env('ASSET_URL', '/economicoemprendedor'),
+    'asset_url' => env('ASSET_URL', 'http://economico.com.ar/'),
 
     'timezone' => 'America/Argentina/Buenos_Aires',
 
