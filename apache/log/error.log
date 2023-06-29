@@ -10,3 +10,15 @@
 [Fri Jun 23 08:45:11.384475 2023] [core:notice] [pid 9] AH00094: Command line: '/usr/sbin/apache2 -D FOREGROUND'
 [Fri Jun 23 08:48:11.280190 2023] [mpm_prefork:notice] [pid 9] AH00163: Apache/2.4.54 (Debian) PHP/7.4.33 configured -- resuming normal operations
 [Fri Jun 23 08:48:11.280456 2023] [core:notice] [pid 9] AH00094: Command line: '/usr/sbin/apache2 -D FOREGROUND'
+[Thu Jun 29 11:08:30.033211 2023] [mpm_prefork:notice] [pid 9] AH00163: Apache/2.4.54 (Debian) PHP/7.4.33 configured -- resuming normal operations
+[Thu Jun 29 11:08:30.055819 2023] [core:notice] [pid 9] AH00094: Command line: '/usr/sbin/apache2 -D FOREGROUND'
+AH00112: Warning: DocumentRoot [/var/www/economico/public] does not exist
+[Thu Jun 29 11:16:18.268714 2023] [mpm_prefork:notice] [pid 8] AH00163: Apache/2.4.54 (Debian) PHP/7.4.33 configured -- resuming normal operations
+[Thu Jun 29 11:16:18.268834 2023] [core:notice] [pid 8] AH00094: Command line: '/usr/sbin/apache2 -D FOREGROUND'
+AH00112: Warning: DocumentRoot [/var/www/economico/public] does not exist
+[Thu Jun 29 11:19:41.054822 2023] [mpm_prefork:notice] [pid 9] AH00163: Apache/2.4.54 (Debian) PHP/7.4.33 configured -- resuming normal operations
+[Thu Jun 29 11:19:41.055001 2023] [core:notice] [pid 9] AH00094: Command line: '/usr/sbin/apache2 -D FOREGROUND'
+[Thu Jun 29 11:24:47.034002 2023] [mpm_prefork:notice] [pid 9] AH00163: Apache/2.4.54 (Debian) PHP/7.4.33 configured -- resuming normal operations
+[Thu Jun 29 11:24:47.034240 2023] [core:notice] [pid 9] AH00094: Command line: '/usr/sbin/apache2 -D FOREGROUND'
+[Thu Jun 29 11:27:03.751010 2023] [mpm_prefork:notice] [pid 9] AH00163: Apache/2.4.54 (Debian) PHP/7.4.33 configured -- resuming normal operations
+[Thu Jun 29 11:27:03.752122 2023] [core:notice] [pid 9] AH00094: Command line: '/usr/sbin/apache2 -D FOREGROUND'

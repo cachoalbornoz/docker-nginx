@@ -1,0 +1,3 @@
+172.18.0.5 - - [29/Jun/2023:11:25:10 -0300] "GET / HTTP/1.1" 200 23164 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36 Edg/114.0.1823.58"
+172.18.0.5 - - [29/Jun/2023:11:25:11 -0300] "GET /favicon.ico HTTP/1.1" 404 458 "http://economico.com.ar/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36 Edg/114.0.1823.58"
+172.19.0.3 - - [29/Jun/2023:11:27:19 -0300] "GET / HTTP/1.1" 200 23166 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36 Edg/114.0.1823.58"

@@ -1,6 +1,7 @@
 version: '3'
 
 services:
+
     nginx-proxy:
         container_name: ${COMPOSE_PROJECT_NAME}-nginx-proxy
         image: jwilder/nginx-proxy # Es un nginx que permite redireccionar el tráfico hacia otros contenedores
@@ -30,8 +31,8 @@ services:
             - ./nginx/html:/usr/share/nginx/html # Monta el directorio para que LetsEncrypt pueda escribir los archivos de validación
             - ./nginx/vhostd:/etc/nginx/vhost.d # Monta el directorio para que LetsEncrypt pueda escribir en los vhosts
 
-    www-sgis:
-        container_name: ${COMPOSE_PROJECT_NAME}-www-sgis
+    www-economico:
+        container_name: www-economico
         restart: always
         build:
             dockerfile: Dockerfile-apache
@@ -40,32 +41,32 @@ services:
         volumes:
             - ./apache/confd/config.ini:/usr/local/etc/php/conf.d/config.ini
             - ./apache/log:/var/log/apache2
-            - ./apache/vhost/sgis.conf:/etc/apache2/sites-available/000-default.conf
-            - ./www/sgis:/var/www/sgis
+            - ./apache/vhost/economico.conf:/etc/apache2/sites-available/000-default.conf
+            - ./www/economico:/var/www/economico
         environment:
-            - VIRTUAL_HOST=sgis.testing.fluxa.com.ar # Los vhosts a reportar a nginx-proxy (separados por coma)
-            - LETSENCRYPT_HOST=sgis.testing.fluxa.com.ar # Los dominios a certificar (separados por coma)
+            - VIRTUAL_HOST=economico.com.ar # Los vhosts a reportar a nginx-proxy (separados por coma)
+            - LETSENCRYPT_HOST=economico.com.ar # Los dominios a certificar (separados por coma)
             - LETSENCRYPT_EMAIL=cachoalbornoz@gmail.com # Email para validación / notificaciones
             - TZ=America/Argentina/Buenos_Aires
         depends_on:
             - nginx-proxy
             - letsencrypt
 
-    www-fluxsasistemas:
-        container_name: ${COMPOSE_PROJECT_NAME}-www-fluxsasistemas
-        image: nginx
-        restart: always
-        expose:
-            - '80' # Expone el puerto en forma interna solo para la red de Docker ('expose' en vez de 'ports')
-        volumes:
-            - ./www/fluxsasistemas:/usr/share/nginx/html:ro # Monta el directorio con los archivos del sitio web en el contenedor nginx
-        environment:
-            - VIRTUAL_HOST=er.fluxsasistemas.host # Los vhosts a reportar a nginx-proxy (separados por coma)
-            - LETSENCRYPT_HOST=er.fluxsasistemas.host # Los dominios a certificar (separados por coma)
-            - LETSENCRYPT_EMAIL=cachoalbornoz@gmail.com # Email para validación / notificaciones
-        depends_on:
-            - nginx-proxy
-            - letsencrypt
+    # www-fluxsasistemas:
+    #     container_name: ${COMPOSE_PROJECT_NAME}-www-fluxsasistemas
+    #     image: nginx
+    #     restart: always
+    #     expose:
+    #         - '80' # Expone el puerto en forma interna solo para la red de Docker ('expose' en vez de 'ports')
+    #     volumes:
+    #         - ./www/fluxsasistemas:/usr/share/nginx/html:ro # Monta el directorio con los archivos del sitio web en el contenedor nginx
+    #     environment:
+    #         - VIRTUAL_HOST=er.fluxsasistemas.host # Los vhosts a reportar a nginx-proxy (separados por coma)
+    #         - LETSENCRYPT_HOST=er.fluxsasistemas.host # Los dominios a certificar (separados por coma)
+    #         - LETSENCRYPT_EMAIL=cachoalbornoz@gmail.com # Email para validación / notificaciones
+    #     depends_on:
+    #         - nginx-proxy
+    #         - letsencrypt
 
     mariadb:
         container_name: ${COMPOSE_PROJECT_NAME}-mariadb
